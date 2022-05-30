@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./PrivateScreen.css";
+import Data from "./Data";
+import imag from '../../images/huella.png';
 
 const PrivateScreen = ({ history }) => {
     const [error, setError] = useState("");
     const [privateData, setPrivateData] = useState("");
-
+    const userName = localStorage.getItem('user');
     useEffect(() => {
         const fetchPrivateDate = async () => {
             const config = {
@@ -29,15 +31,19 @@ const PrivateScreen = ({ history }) => {
 
     const logoutHandler = () => {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('user');
         history.push('/login')
     }
 
     return error ? (
-        <span className="error-me1sage">{error}</span>
+        <span className="error-message">{error}</span>
     ) : (
         <>
-            <div style={{ background: 'green', color: 'white' }}>{privateData}</div>
-            <button onClick={logoutHandler}>logout</button>
+            {/*    <div style={{ background: 'green', color: 'white' }}> {privateData} {userName}
+            </div> */}
+
+
+            <Data />
         </>
 
     );

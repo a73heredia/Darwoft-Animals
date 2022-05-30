@@ -40,8 +40,9 @@ const RegisterScreen = ({ history }) => {
             );
 
             localStorage.setItem("authToken", data.token);
+            localStorage.setItem("user", data.user);
 
-            history.push("/");
+            history.push("/home");
         } catch (error) {
             setError(error.response.data.error);
             setTimeout(() => {

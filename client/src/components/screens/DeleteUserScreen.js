@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./LoginScreen.css";
+import "./DeleteUserScreen.css";
 
-const LoginScreen = ({ history }) => {
+const DeleteUserScreen = ({ history }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
     useEffect(() => {
         if (localStorage.getItem("authToken")) {
-            history.push("/");
+            history.push("/delete");
         }
     }, [history]);
 
-    const loginHandler = async (e) => {
+    const deleteHandler = async (e) => {
         e.preventDefault();
 
         const config = {
@@ -24,14 +24,14 @@ const LoginScreen = ({ history }) => {
         };
 
         try {
-            const { data } = await axios.post(
-                "/api/auth/login",
-                { email, password },
+            const { data } = await axios.delete(
+                "/api/auth/deleteUser",
+                { email },
                 config
             );
 
-            localStorage.setItem("authToken", data.token);
-            localStorage.setItem("user", data.user);
+            localStorage.setItem("authToken", "");
+            localStorage.setItem("user", "");
 
             history.push("/home");
         } catch (error) {
@@ -44,8 +44,8 @@ const LoginScreen = ({ history }) => {
 
     return (
         <div className="login-screen">
-            <form onSubmit={loginHandler} className="login-screen__form">
-                <h3 className="login-screen__title">Login</h3>
+            <form onSubmit={deleteHandler} className="login-screen__form">
+                <h3 className="login-screen__title">Delete User</h3>
                 {error && <span className="error-message">{error}</span>}
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
@@ -59,34 +59,17 @@ const LoginScreen = ({ history }) => {
                         tabIndex={1}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">
-                        Password:{" "}
-                        <Link to="/forgotpassword" className="login-screen__forgotpassword">
-                            Forgot Password?
-                        </Link>
-                    </label>
-                    <input
-                        type="text"
-                        required
-                        id="password"
-                        autoComplete="true"
-                        placeholder="Enter password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                        tabIndex={2}
-                    />
-                </div>
+
                 <button type="submit" className="btn btn-primary" tabIndex={3}>
-                    Login
+                    Delete
                 </button>
 
                 <span className="login-screen__subtext">
-                    Don't have an account? <Link to="/register">Register</Link>
+                    Go Back? <Link to="/home">Home</Link>
                 </span>
             </form>
         </div>
     );
 };
 
-export default LoginScreen;
+export default DeleteUserScreen;

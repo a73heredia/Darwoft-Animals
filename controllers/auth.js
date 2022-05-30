@@ -56,6 +56,7 @@ exports.login = async (req, res, next) => {
             succes: true,
             token: "dfsdfgadsg"
         }) */
+        console.log(user.username);
         sendToken(user, 200, res);
     } catch (error) {
         res.status(500).json({ succes: false, error: error.message })
@@ -139,10 +140,30 @@ exports.resetPassword = async (req, res, next) => {
     }
 }
 
+exports.deleteUser = async (req, res, next) => {
+    /* const email = req.body.email; */
+    const { email } = req.body;
+
+    try {
+        await User.findOneAndDelete(email);
+
+        res.status(201).json({
+            success: true,
+            data: "User Deleted",
+        });
+        /*         console.log(email)
+                res.send('hola ' + email) */
+
+    } catch (error) {
+        console.log('fail')
+    }
+}
+
 const sendToken = (user, statusCode, res) => {
     const token = user.getSignedToken();
     res.status(statusCode).json({
         succes: true,
-        token
+        token,
+        user: user.username
     })
 }

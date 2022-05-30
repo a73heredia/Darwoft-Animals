@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .landing{
+    background-image: url('../../images/perros.jpg');
+    height: 100vh;
+}
+ */
+.navbar{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3B3B3B;
+}
+
+.image{
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+}
+
+.nav-logo{
+    font-weight: 700;
+    font-size: 21px;
+    margin: 15px;
+    color: #ffffff;
+}
+
+.nav-items{
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 15px;
+    position: relative;
+    opacity: 0.4;
+}
+
+.nav-items:hover{
+    opacity: 1;
+}
+
+.nav-items::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: all .45s;
+
+}
+
+.nav-items:hover::before{
+    width: 100%;
+}
+
+.slider{
+    height: 80vh;
+}
+
+.btn-log{
+    height: 30px;
+}

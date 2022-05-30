@@ -1,0 +1,28 @@
+.btn {
+    background: linear-gradient(to right, transparent 20%, #FA8072);
+    background-size: 200%;
+    background-position: left;
+    transition: background-position 0.5s;
+    color: #E17666;
+    font-size: 0.89rem;
+    width: 50px;
+    height: 35px;
+    padding: .09rem 1rem;
+    margin-right: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-position: right;
+    color: #9E5638;
+    font-weight: 700;
+}
+
+.searchInput {
+    margin-top: 6px;    
+    margin-bottom: 6px;
+    padding-top: 2px;
+    height: 30px;
+    border-radius: 10px;
+}
